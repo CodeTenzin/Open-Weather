@@ -14,16 +14,14 @@ import "./App.css";
 {weatherData.wind.speed} mph
 */
 
-// TODO: double click for updated icons.
-
 function App() {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
-  const [descriptionIcon, setDescriptionIcon] = useState("");
-  const [sunrise, setSunrise] = useState("");
-  const [sunset, setSunset] = useState("");
+  // const [descriptionIcon, setDescriptionIcon] = useState("");
+  // const [sunrise, setSunrise] = useState("");
+  // const [sunset, setSunset] = useState("");
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -65,10 +63,9 @@ function App() {
       .then((res) => {
         setLoading(false);
         setWeather(res.data);
-        setDescriptionIcon(weather.weather[0].icon);
         console.log(res.data);
-
-        getDate(weather.sys.sunrise, weather.sys.sunset);
+        // setDescriptionIcon(weather.weather[0].icon);
+        // getDate(weather.sys.sunrise, weather.sys.sunset);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
@@ -80,13 +77,12 @@ function App() {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     fetchWeather();
-    console.log(city);
+    // console.log(city);
   };
 
   const getDate = (sunrise: number, sunset: number) => {
     const sunriseDate = new Date(sunrise * 1000);
     setSunrise(sunriseDate.toLocaleTimeString());
-
     const sunsetDate = new Date(sunset * 1000);
     setSunset(sunsetDate.toLocaleTimeString());
   };
@@ -122,7 +118,7 @@ function App() {
                   <img
                     width="28"
                     height="28"
-                    src={`https://openweathermap.org/img/wn/${descriptionIcon}@2x.png`}
+                    src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                   />
                 }
                 <span className="line-break weather-numbers">
@@ -166,7 +162,6 @@ function App() {
                   {weather.wind.speed} mph
                 </span>
               </p>
-
               <p className="grid-item">
                 {
                   <img
@@ -176,12 +171,16 @@ function App() {
                   />
                 }
                 <span className="line-break">Sunrise</span>
-                <span className="line-break weather-numbers">{sunrise}</span>
+                <span className="line-break weather-numbers">
+                  {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}
+                </span>
               </p>
               <p className="grid-item">
                 {<img width="28" height="28" src={"./src/assets/sunset.png"} />}
                 <span className="line-break">Sunset</span>
-                <span className="line-break weather-numbers">{sunset}</span>
+                <span className="line-break weather-numbers">
+                  {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}
+                </span>
               </p>
             </div>
           </div>
