@@ -68,18 +68,7 @@ function App() {
         setDescriptionIcon(weather.weather[0].icon);
         console.log(res.data);
 
-        // const date = new Date(weather.sys.sunrisep * 1000);
-        // const hours = date.getHours();
-        // const minutes = "0" + date.getMinutes();
-        // const formattedTime = hours + ":" + minutes.substr(-2);
-
-        // const sunrise = new Date(weather.sys.sunrise).toLocaleTimeString("en-US");
-
-        const sunriseDate = new Date(weather.sys.sunrise * 1000);
-        setSunrise(sunriseDate.toLocaleTimeString());
-
-        const sunsetDate = new Date(weather.sys.sunset * 1000);
-        setSunset(sunsetDate.toLocaleTimeString());
+        getDate(weather.sys.sunrise, weather.sys.sunset);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
@@ -92,6 +81,14 @@ function App() {
     event.preventDefault();
     fetchWeather();
     console.log(city);
+  };
+
+  const getDate = (sunrise: number, sunset: number) => {
+    const sunriseDate = new Date(sunrise * 1000);
+    setSunrise(sunriseDate.toLocaleTimeString());
+
+    const sunsetDate = new Date(sunset * 1000);
+    setSunset(sunsetDate.toLocaleTimeString());
   };
 
   return (
