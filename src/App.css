@@ -1,0 +1,105 @@
+.container {
+  font-size: 62.5%;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+/* Header */
+.header {
+  font-size: 1.3rem;
+  font-weight: bolder;
+  color: #36454f;
+}
+
+.header-date {
+  font-size: 1.1rem;
+  font-weight: lighter;
+  color: gray;
+}
+
+/* Input fields. */
+.container-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input {
+  padding: 5px 15px;
+  font-size: 1.5rem;
+  /* color: gray; */
+  color: #36454f;
+  border: 1px solid lightblue;
+  border-radius: 15px;
+  border-color: lightgray;
+  outline: none;
+  flex-grow: 1;
+}
+
+input:hover,
+input:focus {
+  border-color: #fbceb1;
+}
+
+input:focus {
+  background: #f5f5f5;
+}
+
+button {
+  color: #36454f;
+  background-color: #f5f5f5;
+  padding: 5px 15px;
+  font-size: 1.3rem;
+  border-radius: 15px;
+  /* border-color: lightsalmon; */
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+button:hover,
+button:focus {
+  color: white;
+  background: #fbceb1;
+}
+
+/* Information fields. */
+.container-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: start;
+  align-items: center;
+  /* border: 1px solid blue; */
+  margin-top: 0.5rem;
+  background: #f5f5f5;
+  font-size: 1rem;
+  color: gray;
+}
+
+.grid-item {
+  background: white;
+  margin: 0.4rem;
+  /* border: 1px solid red; */
+  padding: 1rem 0.5rem;
+  border-radius: 10px;
+}
+
+.weather-numbers {
+  margin-top: 0.5rem;
+  display: block;
+  font-size: 1.3rem;
+  color: #36454f;
+  font-weight: 500;
+}
+
+.weather-description {
+  color: gray;
+  /* font-size: 1.5rem; */
+}
+
+img {
+  margin-bottom: 0.5rem;
+}
+
+.line-break {
+  display: block;
+}
