@@ -1,6 +1,6 @@
-import axios, { CanceledError } from "axios";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import "./App.css";
+import useOpenMaps from "./hooks/useOpenMaps";
 
 // https://openweathermap.org/current
 /*
@@ -17,10 +17,7 @@ import "./App.css";
 */
 
 function App() {
-  const [isLoading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const [city, setCity] = useState("");
-  const [weather, setWeather] = useState(null);
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -44,33 +41,22 @@ function App() {
     "November",
     "December",
   ];
-  const today = new Date();
-  const day = String(today.getDate()).padStart(2, "0");
-  // const month = String(today.getMonth() + 1).padStart(2, "0");
-  const month = String(today.getMonth()).padStart(2, "0");
-  // const year = today.getFullYear();
 
-  useEffect(() => {
-    setLoading(true);
-    fetchWeather();
-  }, []);
-
-  const fetchWeather = async () => {
-    await axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=ceb16806249418e1704b7dca064ec279`
-      )
-      .then((res) => {
-        setLoading(false);
-        setWeather(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setLoading(false);
-        // setError(err.message);
-      });
+  const today1 = new Date();
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
   };
+
+  const formattedDate = today1.toLocaleDateString("en-US", options);
+  // console.log(formattedDate);
+
+  // const today = new Date();
+  // const day = String(today.getDate()).padStart(2, "0");
+  // const month = String(today.getMonth()).padStart(2, "0");
+
+  const { weather, isLoading, error, fetchWeather } = useOpenMaps(city);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -83,13 +69,13 @@ function App() {
       <div className="container">
         {isLoading && <p>Loading...</p>}
         {error && <p>{error}</p>}
-
         <h1 className="header">
-          {daysOfWeek[parseInt(day)]}
+          {/* {daysOfWeek[parseInt(day)]}
           {", "}
           <span className="header-date">
             {day} {monthNames[parseInt(month)]}
-          </span>
+          </span> */}
+          {formattedDate}
         </h1>
 
         <form onSubmit={handleSubmit}>
@@ -116,7 +102,7 @@ function App() {
                   />
                 }
                 <span className="line-break weather-numbers">
-                  {weather.main.temp}°
+                  {weather.main.temp}°C
                 </span>
                 <span className="weather-numbers">
                   {weather.weather[0].description}

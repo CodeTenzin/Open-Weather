@@ -100,10 +100,9 @@ button:focus {
   font-weight: 500;
 }
 
-.weather-description {
+/* .weather-description {
   color: gray;
-  /* font-size: 1.5rem; */
-}
+} */
 
 img {
   margin-bottom: 0.5rem;
