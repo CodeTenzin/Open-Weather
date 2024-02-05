@@ -65,7 +65,8 @@ button:focus {
 /* Information fields. */
 .container-info {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: repeat(2, 1fr); */
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
   justify-content: start;
   align-items: center;
   /* border: 1px solid blue; */
@@ -86,6 +87,11 @@ button:focus {
   border-radius: 10px;
 }
 
+.grid-item-weather {
+  grid-row: 1/-1;
+  padding: 10em 2rem;
+}
+
 .weather-numbers {
   margin-top: 0.5rem;
   display: block;
@@ -104,9 +110,9 @@ img {
 }
 
 .img-temperature {
-  padding-top: 0.1rem;
-  padding-left: 0.5rem;
-  transform: scale(4);
+  transform: scale(11);
+  padding-bottom: 0.5rem;
+  padding-left: 0.7rem;
 }
 
 .line-break {

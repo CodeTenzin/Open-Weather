@@ -106,7 +106,7 @@ function App() {
         {weather && (
           <div>
             <div className="container-info">
-              <p className="grid-item">
+              <p className="grid-item grid-item-weather">
                 {
                   <img
                     width="28"
@@ -169,6 +169,15 @@ function App() {
                   {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}
                 </span>
               </p>
+              <p className="grid-item">
+                {<img width="28" height="28" src={"./src/assets/sunset.png"} />}
+                <span className="line-break">Sunset</span>
+                <span className="line-break weather-numbers">
+                  {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}
+                </span>
+              </p>
+
+              {/* Rain */}
               <p className="grid-item">
                 {<img width="28" height="28" src={"./src/assets/sunset.png"} />}
                 <span className="line-break">Sunset</span>
