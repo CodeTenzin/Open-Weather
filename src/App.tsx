@@ -17,30 +17,29 @@ import useOpenMaps from "./hooks/useOpenMaps";
 */
 
 function App() {
-  const [city, setCity] = useState("");
-  const daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  // const daysOfWeek = [
+  //   "Sunday",
+  //   "Monday",
+  //   "Tuesday",
+  //   "Wednesday",
+  //   "Thursday",
+  //   "Friday",
+  //   "Saturday",
+  // ];
+  // const monthNames = [
+  //   "January",
+  //   "February",
+  //   "March",
+  //   "April",
+  //   "May",
+  //   "June",
+  //   "July",
+  //   "August",
+  //   "September",
+  //   "October",
+  //   "November",
+  //   "December",
+  // ];
 
   const today1 = new Date();
   const options: Intl.DateTimeFormatOptions = {
@@ -56,6 +55,7 @@ function App() {
   // const day = String(today.getDate()).padStart(2, "0");
   // const month = String(today.getMonth()).padStart(2, "0");
 
+  const [city, setCity] = useState("");
   const { weather, isLoading, error, fetchWeather } = useOpenMaps(city);
 
   const handleSubmit = (event: FormEvent) => {
@@ -122,6 +122,7 @@ function App() {
                   {weather.main.feels_like}°
                 </span>
               </p>
+
               <p className="grid-item">
                 {
                   <img
@@ -135,6 +136,7 @@ function App() {
                   {weather.main.humidity}%
                 </span>
               </p>
+
               <p className="grid-item">
                 {<img width="28" height="28" src={"./src/assets/wind.png"} />}
                 <span className="line-break">Wind speed</span>
@@ -142,6 +144,16 @@ function App() {
                   {weather.wind.speed} mph
                 </span>
               </p>
+
+              {/* Rain */}
+              <p className="grid-item">
+                {<img width="28" height="28" src={"./src/assets/clouds.png"} />}
+                <span className="line-break">Clouds</span>
+                <span className="line-break weather-numbers">
+                  {weather.clouds.all} %
+                </span>
+              </p>
+
               <p className="grid-item">
                 {
                   <img
@@ -155,15 +167,7 @@ function App() {
                   {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}
                 </span>
               </p>
-              <p className="grid-item">
-                {<img width="28" height="28" src={"./src/assets/sunset.png"} />}
-                <span className="line-break">Sunset</span>
-                <span className="line-break weather-numbers">
-                  {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}
-                </span>
-              </p>
 
-              {/* Rain */}
               <p className="grid-item">
                 {<img width="28" height="28" src={"./src/assets/sunset.png"} />}
                 <span className="line-break">Sunset</span>
