@@ -3,15 +3,17 @@ import { FormEvent, useEffect, useState } from "react";
 import "./App.css";
 
 // https://openweathermap.org/current
-
-// `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid={API_KEY}`
+/*
+  Endpoint:
+ `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid={API_KEY}`
+ */
 
 /*
-{weatherData.main.temp} °F
-{weatherData.weather[0].description}
-{weatherData.main.feels_like} °F
-{weatherData.main.humidity} %
-{weatherData.wind.speed} mph
+  {weatherData.main.temp} °F
+  {weatherData.weather[0].description}
+  {weatherData.main.feels_like} °F
+  {weatherData.main.humidity} %
+  {weatherData.wind.speed} mph
 */
 
 function App() {
@@ -19,9 +21,6 @@ function App() {
   const [error, setError] = useState("");
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
-  // const [descriptionIcon, setDescriptionIcon] = useState("");
-  // const [sunrise, setSunrise] = useState("");
-  // const [sunset, setSunset] = useState("");
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -65,8 +64,6 @@ function App() {
         setLoading(false);
         setWeather(res.data);
         console.log(res.data);
-        // setDescriptionIcon(weather.weather[0].icon);
-        // getDate(weather.sys.sunrise, weather.sys.sunset);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
@@ -81,18 +78,12 @@ function App() {
     // console.log(city);
   };
 
-  // const getDate = (sunrise: number, sunset: number) => {
-  //   const sunriseDate = new Date(sunrise * 1000);
-  //   setSunrise(sunriseDate.toLocaleTimeString());
-  //   const sunsetDate = new Date(sunset * 1000);
-  //   setSunset(sunsetDate.toLocaleTimeString());
-  // };
-
   return (
     <>
       <div className="container">
         {isLoading && <p>Loading...</p>}
         {error && <p>{error}</p>}
+
         <h1 className="header">
           {daysOfWeek[parseInt(day)]}
           {", "}
@@ -100,6 +91,7 @@ function App() {
             {day} {monthNames[parseInt(month)]}
           </span>
         </h1>
+
         <form onSubmit={handleSubmit}>
           <div className="container-input">
             <input
@@ -110,6 +102,7 @@ function App() {
             <button>Get Weather</button>
           </div>
         </form>
+
         {weather && (
           <div>
             <div className="container-info">
@@ -119,6 +112,7 @@ function App() {
                     width="28"
                     height="28"
                     src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                    className="img-temperature"
                   />
                 }
                 <span className="line-break weather-numbers">

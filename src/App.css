@@ -71,15 +71,18 @@ button:focus {
   /* border: 1px solid blue; */
   margin-top: 0.5rem;
   background: #f5f5f5;
+  border-radius: 10px;
   font-size: 1rem;
   color: gray;
 }
 
 .grid-item {
+  height: 100px;
+  width: auto;
   background: white;
   margin: 0.4rem;
-  /* border: 1px solid red; */
-  padding: 1rem 0.5rem;
+  /* padding: 1rem 0.5rem; */
+  padding: 1rem 1.5rem;
   border-radius: 10px;
 }
 
@@ -98,6 +101,12 @@ button:focus {
 
 img {
   margin-bottom: 0.5rem;
+}
+
+.img-temperature {
+  padding-top: 0.1rem;
+  padding-left: 0.5rem;
+  transform: scale(4);
 }
 
 .line-break {
