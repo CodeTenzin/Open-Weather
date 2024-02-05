@@ -45,10 +45,11 @@ function App() {
     "November",
     "December",
   ];
-  const d = new Date();
-  const dayOfWeek = daysOfWeek[d.getDay()];
-  const dayOfMonth = d.getDay();
-  const month = d.getMonth();
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, "0");
+  // const month = String(today.getMonth() + 1).padStart(2, "0");
+  const month = String(today.getMonth()).padStart(2, "0");
+  // const year = today.getFullYear();
 
   useEffect(() => {
     setLoading(true);
@@ -80,12 +81,12 @@ function App() {
     // console.log(city);
   };
 
-  const getDate = (sunrise: number, sunset: number) => {
-    const sunriseDate = new Date(sunrise * 1000);
-    setSunrise(sunriseDate.toLocaleTimeString());
-    const sunsetDate = new Date(sunset * 1000);
-    setSunset(sunsetDate.toLocaleTimeString());
-  };
+  // const getDate = (sunrise: number, sunset: number) => {
+  //   const sunriseDate = new Date(sunrise * 1000);
+  //   setSunrise(sunriseDate.toLocaleTimeString());
+  //   const sunsetDate = new Date(sunset * 1000);
+  //   setSunset(sunsetDate.toLocaleTimeString());
+  // };
 
   return (
     <>
@@ -93,11 +94,10 @@ function App() {
         {isLoading && <p>Loading...</p>}
         {error && <p>{error}</p>}
         <h1 className="header">
-          {dayOfWeek},
+          {daysOfWeek[parseInt(day)]}
+          {", "}
           <span className="header-date">
-            {dayOfMonth < 10
-              ? ` 0${dayOfMonth} ${monthNames[month]}`
-              : ` ${dayOfMonth} ${monthNames[month]}`}
+            {day} {monthNames[parseInt(month)]}
           </span>
         </h1>
         <form onSubmit={handleSubmit}>
