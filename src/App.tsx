@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import "./App.css";
 import useOpenMaps from "./hooks/useOpenMaps";
+import useSpeechRecognition from "./hooks/useSpeechRecognition";
 
 // https://openweathermap.org/current
 /*
@@ -17,30 +18,6 @@ import useOpenMaps from "./hooks/useOpenMaps";
 */
 
 function App() {
-  // const daysOfWeek = [
-  //   "Sunday",
-  //   "Monday",
-  //   "Tuesday",
-  //   "Wednesday",
-  //   "Thursday",
-  //   "Friday",
-  //   "Saturday",
-  // ];
-  // const monthNames = [
-  //   "January",
-  //   "February",
-  //   "March",
-  //   "April",
-  //   "May",
-  //   "June",
-  //   "July",
-  //   "August",
-  //   "September",
-  //   "October",
-  //   "November",
-  //   "December",
-  // ];
-
   const today1 = new Date();
   const options: Intl.DateTimeFormatOptions = {
     weekday: "long",
@@ -49,11 +26,6 @@ function App() {
   };
 
   const formattedDate = today1.toLocaleDateString("en-US", options);
-  // console.log(formattedDate);
-
-  // const today = new Date();
-  // const day = String(today.getDate()).padStart(2, "0");
-  // const month = String(today.getMonth()).padStart(2, "0");
 
   const [city, setCity] = useState("");
   const { weather, isLoading, error, fetchWeather } = useOpenMaps(city);
@@ -66,17 +38,11 @@ function App() {
 
   return (
     <>
+      {/* {!transcript && setCity(transcript)} */}
       <div className="container">
         {isLoading && <p>Loading...</p>}
         {error && <p>{error}</p>}
-        <h1 className="header">
-          {/* {daysOfWeek[parseInt(day)]}
-          {", "}
-          <span className="header-date">
-            {day} {monthNames[parseInt(month)]}
-          </span> */}
-          {formattedDate}
-        </h1>
+        <h1 className="header">{formattedDate}</h1>
 
         <form onSubmit={handleSubmit}>
           <div className="container-input">
@@ -145,7 +111,6 @@ function App() {
                 </span>
               </p>
 
-              {/* Rain */}
               <p className="grid-item">
                 {<img width="28" height="28" src={"./src/assets/clouds.png"} />}
                 <span className="line-break">Clouds</span>
