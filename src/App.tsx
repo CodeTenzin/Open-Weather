@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import "./App.css";
 import useOpenMaps from "./hooks/useOpenMaps";
 import useSpeechRecognition from "./hooks/useSpeechRecognition";
@@ -29,6 +29,12 @@ function App() {
 
   const [city, setCity] = useState("");
   const { weather, isLoading, error, fetchWeather } = useOpenMaps(city);
+  const { transcript, isListening, startListening, hasRecognitionSupport } =
+    useSpeechRecognition();
+
+  const [isCitySetFromTranscript, setIsCitySetFromTranscript] = useState(false);
+
+  console.log(transcript);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -49,9 +55,20 @@ function App() {
             <input
               type="text"
               placeholder="City"
+              value={transcript || city}
               onChange={(event) => setCity(event.target.value)}
             />
             <button>Get Weather</button>
+            {hasRecognitionSupport ? (
+              <>
+                <button className="speech" onClick={startListening}>
+                  Speak
+                </button>
+                {isListening && <p>Your browser is currently listening...</p>}
+              </>
+            ) : (
+              <p>NOT SUPPORTED</p>
+            )}
           </div>
         </form>
 

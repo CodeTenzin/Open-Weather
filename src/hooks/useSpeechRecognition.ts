@@ -24,7 +24,7 @@ const useSpeechRecognition = () => {
   }, []);
 
   const startListening = () => {
-    setTranscript("");
+    // setTranscript("");
     setIsListening(true);
     recognition.start();
   };
