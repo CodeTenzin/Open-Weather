@@ -27,7 +27,6 @@ const useOpenMaps = (city: string) => {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
   // const [weather, setWeather] = useState(null);
-  // const [weather, setWeather] = useState(null);
   const [weather, setWeather] = useState<WeatherData | null>(null);
 
   useEffect(() => {
