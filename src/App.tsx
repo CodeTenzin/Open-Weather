@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import "./App.css";
 import useOpenMaps from "./hooks/useOpenMaps";
-import useSpeechRecognition from "./hooks/useSpeechRecognition";
+// import useSpeechRecognition from "./hooks/useSpeechRecognition";
 
 // https://openweathermap.org/current
 /*
@@ -27,7 +27,7 @@ function App() {
 
   const formattedDate = today1.toLocaleDateString("en-US", options);
 
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("new york");
   const { weather, isLoading, error, fetchWeather } = useOpenMaps(city);
   // const { transcript, isListening, startListening, hasRecognitionSupport } =
   //   useSpeechRecognition();

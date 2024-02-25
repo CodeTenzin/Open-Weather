@@ -1,6 +1,28 @@
 import axios, { CanceledError } from "axios";
 import { useEffect, useState } from "react";
 
+// interface WeatherData {
+//   main: {
+//     temp: number;
+//     feels_like: number;
+//     humidity: number;
+//   };
+//   weather: {
+//     description: string;
+//     icon: string;
+//   }[];
+//   wind: {
+//     speed: number;
+//   };
+//   clouds: {
+//     all: number;
+//   };
+//   sys: {
+//     sunrise: number;
+//     sunset: number;
+//   };
+// }
+
 const useOpenMaps = (city: string) => {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -27,6 +49,7 @@ const useOpenMaps = (city: string) => {
         // setError(err.message);
       });
   };
+
   return { weather, isLoading, error, fetchWeather };
 };
 
